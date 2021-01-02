@@ -11,12 +11,15 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
-  useNewUrlParser: true,
-  useFindAndModify: false,
-});
-
-// routes
+mongoose.connect(
+  process.env.MONGODB_URI || "mongodb://localhost/pacific-meadow",
+  {
+    useNewUrlParser: true,
+    useFindAndModify: false,
+    useCreateIndex: true,
+    useFindAndModify: false,
+  }
+);
 
 app.listen(PORT, () => {
   console.log(`App running on port ${PORT}!`);

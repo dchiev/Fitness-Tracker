@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const express = require("express");
 const mongojs = require("mongojs");
+const path = require("path");
 
 const PORT = process.env.PORT || 3000;
 
@@ -11,18 +12,15 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
-mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost/pacific-meadow",
-  {
-    useNewUrlParser: true,
-    useFindAndModify: false,
-    useCreateIndex: true,
-    useFindAndModify: false,
-  }
-);
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
+  useNewUrlParser: true,
+  useFindAndModify: false,
+  useCreateIndex: true,
+  useFindAndModify: false,
+});
 
-app.use(require("./routes/api.js"));
-app.use(require("./routes/html.js"));
+app.use(require("./routes/api_routes.js"));
+app.use(require("./routes/html_routes.js"));
 
 app.listen(PORT, () => {
   console.log(`App running on port ${PORT}!`);
